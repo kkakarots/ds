@@ -16,7 +16,7 @@ void printBasicType();
  */
 
 /**
- * 输入基础类型
+ * 输入输出基础类型
  * @param void
  * @returns void
  */
