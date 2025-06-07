@@ -73,13 +73,20 @@ void ListInsert(DynamicSqList &L, int pos, ElemType e)
         std::cout << "插入位置 {" << pos << "} 无效，请重新输入。\n"
                   << std::endl;
         return;
-    } // 1, 2, 2 ,3
+    }
+    std::cout << "排序前"
+              << std::endl;
+    for (int i = 0; i < L.length; i++)
+    {
+        std::cout << L.data[i] << ", ";
+    }
     for (int i = L.length; i >= pos; --i)
     {
-        L.data[L.length] = L.data[L.length - 1];
+        L.data[i] = L.data[i - 1];
     }
     L.data[pos - 1] = e;
-    std::cout << "输出"
+    L.length++;
+    std::cout << "\n输出"
               << std::endl;
     for (int i = 0; i < L.length; i++)
     {
