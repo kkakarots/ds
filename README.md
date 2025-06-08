@@ -2,3 +2,9 @@
 Data Structure
 
 ## code exercise
+
+ 🚫
+ ✅
+ ❌
+ ✔️
+ ✨
