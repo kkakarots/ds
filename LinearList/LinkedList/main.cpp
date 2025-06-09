@@ -34,6 +34,21 @@ typedef struct LNode
 } LNode;
 typedef struct LNode *LinkList; */
 
+/** 输出链表 */
+void printLinkList(LinkList &L)
+{
+    cout << "链表长度：" << L->data << endl;
+    cout << "数据：" << endl;
+    LinkList temp = L->next;
+    while (temp != nullptr)
+    {
+        cout << temp->data << ", ";
+        temp = temp->next;
+    }
+    cout << endl;
+    return;
+}
+
 /**
  * 单链表初始化，不推荐写法，因为函数不负责分配内存，容易在调用时出错
  */
@@ -60,7 +75,7 @@ void InitLinkList(LinkList &L, bool with_head_node)
     if (with_head_node)
     {
         L = new LNode; // ✅ 在函数内 new 出头结点
-        L->data = 0;   // 通常为无效值
+        L->data = 0;   // 通常为无效值/链表长度
         L->next = nullptr;
 
         // LinkList node = new LNode;
@@ -99,16 +114,41 @@ void InitLinkList(LinkList &L, bool with_head_node)
 /**
  * Todo 1 采用尾插法建立单链表
  */
+void CreateLinkListTail(LinkList &L)
+{
+    cout << "✨ 尾插法创建单链表" << endl;
+    ElemType val;
+
+    LinkList tail = L;
+
+    cout << "🍍 请输入要插入的值，以-1结尾。" << endl;
+
+    while (cin >> val && val != -1)
+    {
+        LinkList temp = new LNode;
+        temp->data = val;
+        temp->next = nullptr;
+        tail->next = temp;
+        tail = temp; // 更新尾指针
+        L->data++;
+    }
+    cout << "✅ 创建完成！" << endl;
+}
+
+/**
+ * MAIN
+ */
 int main()
 {
     SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8
-    std::cout << "# 线性表-单链表 \n"
+    std::cout << "🏔️ 线性表-单链表 \n"
               << std::endl;
 
     LinkList head;
     bool withHeadNode = true;
     InitLinkList(head, withHeadNode);
-
+    CreateLinkListTail(head);
+    printLinkList(head);
     system("pause");
     return 0;
 }
