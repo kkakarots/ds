@@ -110,9 +110,29 @@ void InitLinkList(LinkList &L, bool with_head_node)
  */
 /**
  * Todo 1 采用头插法建立单链表
+ * ! 重点在于头结点的next始终指向最新插入的结点
  */
+void CreateLinkListHead(LinkList &L)
+{
+    cout << "✨ 头插法创建单链表" << endl;
+    ElemType val;
+
+    cout << "🍍 请输入要插入的值，以-1结尾。" << endl;
+    
+    while (cin >> val && val != -1)
+    {
+        LinkList temp = new LNode;
+        temp->data = val;
+        temp->next = L->next;  // 插入到头结点之后
+        L->next = temp;        // 更新头结点指针
+        L->data++;             // 有效节点数加 1
+    }
+    cout << "✅ 创建完成！" << endl;
+}
 /**
- * Todo 1 采用尾插法建立单链表
+ * 采用尾插法建立单链表
+ * ! 重点在于使用尾指针，避免每次插入都从头开始找最后一个结点
+ * @param LinkList 头指针
  */
 void CreateLinkListTail(LinkList &L)
 {
@@ -147,7 +167,8 @@ int main()
     LinkList head;
     bool withHeadNode = true;
     InitLinkList(head, withHeadNode);
-    CreateLinkListTail(head);
+    // CreateLinkListTail(head);
+    CreateLinkListHead(head);
     printLinkList(head);
     system("pause");
     return 0;
