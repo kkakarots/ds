@@ -96,7 +96,7 @@ void InitLinkList(LinkList &L, bool with_head_node)
 int GetLinkListLength(LinkList L)
 {
     cout << "表长：";
-
+    LinkList temp = L;
     // if (L->data)
     if (false)
     {
@@ -106,25 +106,84 @@ int GetLinkListLength(LinkList L)
     else
     {
         int length = 0;
-        for (length; L->next == nullptr; length)
+        for (; temp->next != nullptr; length++)
         {
+            temp = temp->next;
         }
         cout << length << endl;
         return length;
     }
 }
+
 /**
- * Todo 4 按序号查找结点
+ * 按序号查找结点
+ * ! 重点是头结点之后的结点才是首元结点
  */
+ElemType GetNodeByIndex(LinkList &L)
+{
+    cout << "✨ 按序号查找结点" << endl;
+    int pos = -1;
+    cout << "🍍 请输入要查找的结点序号：" << endl;
+    cin >> pos;
+    int i = 0;
+    LinkList temp = L;
+    while (i < pos && temp->next != nullptr)
+    {
+        temp = temp->next;
+        i++;
+    }
+    if (i != pos)
+    {
+        cout << "❌ 查找超出范围" << endl;
+        return -1;
+    }
+    else
+    {
+        cout << "✅ 成功(值)" << temp->data << endl;
+        cout << "✅ 成功(索引/地址)" << temp << endl;
+        return temp->data;
+    }
+}
+
 /**
- * Todo 4 按值查找结点
+ * 按值查找结点
+ * ! 重点是头结点之后的结点才是首元结点
  */
+ElemType GetNodeByValue(LinkList &L)
+{
+    cout << "✨ 按值查找结点" << endl;
+    int pos = -1;
+    cout << "🍍 请输入要查找的结点值：" << endl;
+    cin >> pos;
+    // int i = 0;
+    LinkList temp = L->next;
+    while (temp->next != nullptr && temp->data != pos)
+    {
+        temp = temp->next;
+    }
+    if (temp->data != pos)
+    {
+        cout << "❌ 查无结果" << endl;
+        return -1;
+    }
+    else
+    {
+        cout << "✅ 成功(值)" << temp->data << endl;
+        cout << "✅ 成功(索引/地址)" << temp << endl;
+        return temp->data;
+    }
+}
+
 /**
- * Todo 5 改变指定位置结点值
+ * 改变指定位置结点值
+ * * 查找后修改 temp->data 即可
  */
+
 /**
  * Todo 6 删除指定位置/值结点
+ * * 1.查找 2.断链
  */
+
 /**
  * 插入结点
  * ! 注意位置有效性判断
@@ -166,9 +225,7 @@ void InsertLinkList(LinkList &L)
     L->data++;
     cout << "✅ 插入成功！" << endl;
 }
-/**
- * Todo 3 删除结点
- */
+
 /**
  * 采用头插法建立单链表
  * ! 重点在于头结点的next始终指向最新插入的结点
@@ -230,15 +287,17 @@ int main()
     InitLinkList(head, withHeadNode);
     // CreateLinkListTail(head);
     CreateLinkListHead(head);
-    GetLinkListLength(head);
+    // GetLinkListLength(head);
     printLinkList(head);
-    InsertLinkList(head);
-    #if true
+    // GetNodeByIndex(head);
+    GetNodeByValue(head);
+    // InsertLinkList(head);
+#if true
     {
-        cout << "➡️ 插入结果" << endl;
+        cout << "➡️ 最终链表结果：";
         printLinkList(head);
     }
-    #endif
+#endif
     system("pause");
     return 0;
 }
