@@ -180,9 +180,35 @@ ElemType GetNodeByValue(LinkList &L)
  */
 
 /**
- * Todo 6 删除指定位置/值结点
+ * 删除指定位置/值结点
  * * 1.查找 2.断链
  */
+ElemType DeleteNodeByIndex(LinkList &L)
+{
+    cout << "✨ 按序号删除结点" << endl;
+    int pos = -1;
+    cout << "🍍 请输入要删除的结点序号：" << endl;
+    cin >> pos;
+    int i = 0;
+    LinkList temp = L;
+    if (pos < 1 || pos > L->data)
+    {
+        cout << "❌ 查找超出范围" << endl;
+        return -1;
+    }
+    while (i < pos - 1 && temp->next != nullptr)
+    {
+        temp = temp->next;
+        i++;
+    }
+
+    // 此时temp指向的是要删除元素的上一个元素
+    temp->next = temp->next->next;
+    L->data--;
+
+    cout << "✅ 删除成功" << endl;
+    return 1;
+}
 
 /**
  * 插入结点
@@ -290,8 +316,9 @@ int main()
     // GetLinkListLength(head);
     printLinkList(head);
     // GetNodeByIndex(head);
-    GetNodeByValue(head);
+    // GetNodeByValue(head);
     // InsertLinkList(head);
+    DeleteNodeByIndex(head);
 #if true
     {
         cout << "➡️ 最终链表结果：";
