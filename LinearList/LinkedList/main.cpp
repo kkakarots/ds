@@ -300,6 +300,15 @@ void CreateLinkListTail(LinkList &L)
 }
 
 /**
+ * Todo 逆置
+ * 1.定义指针来逆置
+ * 2.递归逆置
+ */
+void ReverseLinkList(LinkList &L)
+{
+    
+}
+/**
  * MAIN
  */
 int main()
@@ -318,7 +327,7 @@ int main()
     // GetNodeByIndex(head);
     // GetNodeByValue(head);
     // InsertLinkList(head);
-    DeleteNodeByIndex(head);
+    // DeleteNodeByIndex(head);
 #if true
     {
         cout << "➡️ 最终链表结果：";
