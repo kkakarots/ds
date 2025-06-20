@@ -300,35 +300,39 @@ void CreateLinkListTail(LinkList &L)
 }
 
 /**
- * Todo 逆置(递归)
+ * 逆置
  * 1.定义指针来逆置
- * 2.递归逆置
  */
 void ReverseLinkList(LinkList &L)
 {
-    cout << "ℹ️ 请选择逆置方式（0 三指针/ 1 递归）：" << endl;
-    int a = 0;
-    cin >> a;
-    if (a == 0)
+    cout << "ℹ️ 逆置--三指针：" << endl;
+    // 一
+    LinkList current = L->next;    // 当前结点的地址
+    LinkList temp = current->next; // 当前结点的下一个结点的地址
+    LinkList temp_n = nullptr;     // 下一个结点的下一个结点的地址
+    current->next = nullptr;
+    while (temp != nullptr)
     {
-        // 一
-        LinkList current = L->next;    // 当前结点的地址
-        LinkList temp = current->next; // 当前结点的下一个结点的地址
-        LinkList temp_n = nullptr;     // 下一个结点的下一个结点的地址
-        current->next = nullptr;
-        while (temp != nullptr)
-        {
-            temp_n = temp->next;  // 存储下一个结点的下一个结点
-            temp->next = current; // 下一个结点指向当前结点
-            current = temp;       // 当前结点往后挪
-            temp = temp_n;        // 下一个结点往后挪
-        }
-        L->next = current;
-        cout << "✅ 逆置完成！" << endl;
+        temp_n = temp->next;  // 存储下一个结点的下一个结点
+        temp->next = current; // 下一个结点指向当前结点
+        current = temp;       // 当前结点往后挪
+        temp = temp_n;        // 下一个结点往后挪
     }
-    else
-    {
-    }
+    L->next = current;
+    cout << "✅ 逆置完成！" << endl;
+}
+/**
+ * Todo 逆置(递归)
+ */
+LinkList ReverseLinkListRecursive(LinkList &L)
+{
+    if (L == nullptr || L->next == nullptr) return L;
+
+    LinkList newHead = ReverseLinkListRecursive(L->next); // 递归反转后续节点
+    L->next->next = L; // 后一个节点指向当前节点
+    L->next = nullptr;    // 当前节点断开连接
+
+    return newHead; // 返回新的头指针
 }
 /**
  * MAIN
@@ -350,7 +354,8 @@ int main()
     // GetNodeByValue(head);
     // InsertLinkList(head);
     // DeleteNodeByIndex(head);
-    ReverseLinkList(head);
+    // ReverseLinkList(head);
+    ReverseLinkListRecursive(head);
 #if true
     {
         cout << "➡️ 最终链表结果：";
