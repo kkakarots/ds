@@ -37,6 +37,7 @@ typedef struct LNode *LinkList; */
 /** 输出链表 */
 void printLinkList(LinkList &L)
 {
+    cout << "-------------------" << endl;
     cout << "链表长度：" << L->data << endl;
     cout << "数据：" << endl;
     LinkList temp = L->next;
@@ -328,11 +329,14 @@ LinkList ReverseLinkListRecursive(LinkList &L)
 {
     if (L == nullptr || L->next == nullptr) return L;
 
-    LinkList newHead = ReverseLinkListRecursive(L->next); // 递归反转后续节点
-    L->next->next = L; // 后一个节点指向当前节点
-    L->next = nullptr;    // 当前节点断开连接
+    LinkList first = L->next; // 当前指向结点
+    if (!first || !first->next) return L; // 如果只有一个结点，无需逆置
 
-    return newHead; // 返回新的头指针
+    LinkList newHead = ReverseLinkListRecursive(first); // 递归反转后续节点
+    first->next->next = first; // 后一个节点指向当前节点
+    first->next = nullptr;    // 当前节点断开连接
+    L->next = newHead; // 更新头指针的 next 指向新的头结点
+    return L; // 返回新的头指针
 }
 /**
  * MAIN
@@ -358,7 +362,7 @@ int main()
     ReverseLinkListRecursive(head);
 #if true
     {
-        cout << "➡️ 最终链表结果：";
+        cout << "➡️ 最终链表结果：" << endl;
         printLinkList(head);
     }
 #endif
