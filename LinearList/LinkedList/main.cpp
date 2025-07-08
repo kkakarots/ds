@@ -10,7 +10,7 @@ typedef int ElemType; // 类型定义
 /**
  * 单链表结点类型定义
  *
- * 本质上，typedef 语句给 struct LNode 起了两个别名：
+ * 本质上，typedef 语句给 struct LNode 起了两个别名： 在C++中没区别,但是在C中有区别
  *  - LNode       等价于 struct LNode
  *  - LinkList    等价于 struct LNode*
  *
