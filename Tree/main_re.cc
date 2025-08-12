@@ -1,5 +1,5 @@
 /**
- * !结构体指针不带别名版 
+ * !结构体指针不带别名版
  */
 #include <iostream>
 #include <cstdlib>
@@ -32,10 +32,43 @@ int main()
     SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8
     std::cout << "🏔️ 树 \n"
               << std::endl;
-    TreeNode *tnode = InitTreeNode(1);
-    cout << "Val:" << tnode->val << endl;
-    cout << "Left:" << tnode->left << endl;
-    cout << "Right:" << tnode->right << endl;
+    TreeNode *tnode = InitTreeNode(100);
+    cout << "tnode Val:" << tnode->val << endl;
+    cout << "tnode Left:" << tnode->left << endl;
+    cout << "tnode Right:" << tnode->right << endl;
+    
+    /** 构造节点 */
+    TreeNode *tn1 = InitTreeNode(1);
+    TreeNode *tn2 = InitTreeNode(2);
+    TreeNode *tn3 = InitTreeNode(3);
+    TreeNode *tn4 = InitTreeNode(4);
+    TreeNode *tn5 = InitTreeNode(5);
+
+    /*
+        example:
+             tn1
+            /   \
+           tn2  tn3
+          /   \
+         tn4  tn5
+    */
+    /** 构建节点之间的引用 */
+    tn1->left = tn2;
+    tn1->right = tn3;
+    tn2->left = tn4;
+    tn2->right = tn5;
+
+    /** 插入节点 */
+    TreeNode *p = InitTreeNode(101);
+    // 在tn1 -> tn2 之间插入节点 p
+    tn1->left = p;
+    p->left = tn2;
+    cout << "✅ 插入成功" << endl;
+
+    /** 删除节点 */
+    tn1->left = tn2;
+    free(p);
+    cout << "✅ 已删除" << endl;
 #if true
 
 #endif
