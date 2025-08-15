@@ -1,5 +1,5 @@
 /**
- * !结构体指针不带别名版
+ * ! 结构体指针不带别名版
  */
 #include <iostream>
 #include <cstdlib>
@@ -16,14 +16,15 @@ typedef struct TreeNode
 } TreeNode;
 
 /** 构造函数(初始化) */
-TreeNode *InitTreeNode(int val)
-{
-    TreeNode *f_tnode = new TreeNode;
-    f_tnode->val = val;
-    f_tnode->left = NULL;
-    f_tnode->right = NULL;
-    return f_tnode;
-}
+TreeNode *InitTreeNode(int val) {}
+/** 层序遍历(广度优先) */
+void levelOrder(TreeNode *root) {}
+/** 前序遍历(深度优先) */
+void preOrder(TreeNode *root) {}
+/** 中序遍历(深度优先) */
+void inOrder(TreeNode *root) {}
+/** 后序遍历(深度优先) */
+void postOrder(TreeNode *root) {}
 /**
  * MAIN
  */
@@ -36,7 +37,7 @@ int main()
     cout << "tnode Val:" << tnode->val << endl;
     cout << "tnode Left:" << tnode->left << endl;
     cout << "tnode Right:" << tnode->right << endl;
-    
+
     /** 构造节点 */
     TreeNode *tn1 = InitTreeNode(1);
     TreeNode *tn2 = InitTreeNode(2);
@@ -69,9 +70,27 @@ int main()
     tn1->left = tn2;
     free(p);
     cout << "✅ 已删除" << endl;
+
+    levelOrder(tn1);
 #if true
 
 #endif
     system("pause");
     return 0;
+}
+
+/** 构造函数(初始化) */
+TreeNode *InitTreeNode(int val)
+{
+    TreeNode *f_tnode = new TreeNode;
+    f_tnode->val = val;
+    f_tnode->left = NULL;
+    f_tnode->right = NULL;
+    return f_tnode;
+}
+
+/** 层序遍历(广度优先) */
+void levelOrder(TreeNode *root) {
+    cout << 'level order' << endl;
+    return;
 }

@@ -1,5 +1,5 @@
 /**
- * !结构体指针带别名版 
+ * * 结构体指针带别名版 
  */
 #include <iostream>
 #include <cstdlib>
