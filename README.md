@@ -2,15 +2,8 @@
 Data Structure
 数据结构
 
-## log icon
+# commond
 
- 🚫
- ✅
- ❌
- ✔️
- ✨
- ℹ️
- 🍍
- 🏔️
- 👾
- ➡️
+g++ main.cc -o main.exe
+
+./main.exe

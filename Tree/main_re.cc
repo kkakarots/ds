@@ -15,28 +15,25 @@ typedef struct TreeNode
     TreeNode *right; // 右子节点指针
 } TreeNode;
 
-/** 构造函数(初始化) */
-TreeNode *InitTreeNode(int val) {}
-/** 层序遍历(广度优先) */
-void levelOrder(TreeNode *root) {}
-/** 前序遍历(深度优先) */
-void preOrder(TreeNode *root) {}
-/** 中序遍历(深度优先) */
-void inOrder(TreeNode *root) {}
-/** 后序遍历(深度优先) */
-void postOrder(TreeNode *root) {}
+TreeNode *InitTreeNode(int val);
+void levelOrder(TreeNode *root);
+void preOrder(TreeNode *root);
+void inOrder(TreeNode *root);
+void postOrder(TreeNode *root);
+
 /**
- * MAIN
+ * main function
+ * @return 0
  */
 int main()
 {
     SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8
     std::cout << "🏔️ 树 \n"
               << std::endl;
-    TreeNode *tnode = InitTreeNode(100);
-    cout << "tnode Val:" << tnode->val << endl;
-    cout << "tnode Left:" << tnode->left << endl;
-    cout << "tnode Right:" << tnode->right << endl;
+    // TreeNode *tnode = InitTreeNode(100);
+    // cout << "tnode Val:" << tnode->val << endl;
+    // cout << "tnode Left:" << tnode->left << endl;
+    // cout << "tnode Right:" << tnode->right << endl;
 
     /** 构造节点 */
     TreeNode *tn1 = InitTreeNode(1);
@@ -59,19 +56,25 @@ int main()
     tn2->left = tn4;
     tn2->right = tn5;
 
-    /** 插入节点 */
-    TreeNode *p = InitTreeNode(101);
-    // 在tn1 -> tn2 之间插入节点 p
-    tn1->left = p;
-    p->left = tn2;
-    cout << "✅ 插入成功" << endl;
+    {
+        /** 插入节点 */
+        TreeNode *p = InitTreeNode(101);
+        // 在tn1 -> tn2 之间插入节点 p
+        tn1->left = p;
+        p->left = tn2;
+        cout << "✅ Successed" << endl;
+        /** 插入节点 */
 
-    /** 删除节点 */
-    tn1->left = tn2;
-    free(p);
-    cout << "✅ 已删除" << endl;
-
+        /** 删除节点 */
+        tn1->left = tn2;
+        delete (p);
+        cout << "✅ Deleted" << endl;
+        /** 删除节点 */
+    }
+    /** 遍历 */
     levelOrder(tn1);
+    /** 遍历 */
+
 #if true
 
 #endif
@@ -79,7 +82,11 @@ int main()
     return 0;
 }
 
-/** 构造函数(初始化) */
+/**
+ * 初始化树节点
+ * @param val 值
+ * @return TreeNode* 新建的节点指针
+ */
 TreeNode *InitTreeNode(int val)
 {
     TreeNode *f_tnode = new TreeNode;
@@ -89,8 +96,53 @@ TreeNode *InitTreeNode(int val)
     return f_tnode;
 }
 
-/** 层序遍历(广度优先) */
-void levelOrder(TreeNode *root) {
-    cout << 'level order' << endl;
+/**
+ * 层序遍历(广度优先)
+ * @param root 根节点指针
+ * @return void
+ */
+void levelOrder(TreeNode *root)
+{
+    /**
+     * "队列"
+     */
+    cout << "Level Order:" << endl;
+    /*
+        层序遍历
+        get node -> left -> right
+        left -> left -> right ...
+        ->left/->right == null --> stop
+
+    */
+    return;
+}
+/**
+ * 前序遍历(深度优先)
+ * @param root 根节点指针
+ * @return void
+ */
+void preOrder(TreeNode *root)
+{
+    cout << "pre order" << endl;
+    return;
+}
+/**
+ * 中序遍历(深度优先)
+ * @param root 根节点指针
+ * @return void
+ */
+void inOrder(TreeNode *root)
+{
+    cout << "in order" << endl;
+    return;
+}
+/**
+ * 后序遍历(深度优先)
+ * @param root 根节点指针
+ * @return void
+ */
+void postOrder(TreeNode *root)
+{
+    cout << "post order" << endl;
     return;
 }
